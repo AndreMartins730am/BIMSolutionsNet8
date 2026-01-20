@@ -1,0 +1,287 @@
+﻿<Window x:Class="ViewTemplateConfigFilterNet8.Forms.WpfPrincipal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ViewTemplateConfigFilterNet8.Forms"
+        xmlns:view="clr-namespace:ViewTemplateConfigFilterNet8.Forms.View" 
+        xmlns:viewmodel="clr-namespace:ViewTemplateConfigFilterNet8.Forms.ViewModel" 
+        d:DataContext="{d:DesignInstance Type=viewmodel:MainWindowViewModel}"
+        mc:Ignorable="d"
+        Title="Vitconfil - Configura filtros em View Templates - Revit 2025"  
+        Height="620" 
+        MinHeight="620"
+        Width="1100"
+        MinWidth="1100"
+        WindowStartupLocation="CenterScreen">
+    <!--Resource watermark to native WPF TextBox-->
+    <Window.Resources>
+        <Style x:Key="MyWaterMarkStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid>
+                            <Border Background="White" BorderBrush="#FF7D8683" BorderThickness="1"/>
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="5,0,0,0" VerticalAlignment="Center" />
+                            <Label Margin="5,0,0,0" 
+                                   x:Name="WaterMarkLabel" 
+                                   Content="{TemplateBinding Tag}" 
+                                   VerticalAlignment="Center"
+                                   Visibility="Collapsed" 
+                                   Foreground="Gray" 
+                                   FontFamily="Arial"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Text" Value=""/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Visibility" TargetName="WaterMarkLabel" Value="Visible"/>
+                            </MultiTrigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground" Value="DimGray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--<Style x:Key="VerticalSeparatorStyle"
+           TargetType="{x:Type Separator}"
+           BasedOn="{StaticResource {x:Type Separator}}">
+            <Setter Property="Margin" Value="6,0,6,0"/>
+            <Setter Property="LayoutTransform">
+                <Setter.Value>
+                    <TransformGroup>
+                        <TransformGroup.Children>
+                            <TransformCollection>
+                                <RotateTransform Angle="90"/>
+                            </TransformCollection>
+                        </TransformGroup.Children>
+                    </TransformGroup>
+                </Setter.Value>
+            </Setter>
+        </Style>-->
+    </Window.Resources>
+    <Grid Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="67*"/>
+            <ColumnDefinition Width="153*"/>
+        </Grid.ColumnDefinitions>
+        <!--Definindo tamanho de linhas-->
+        <Grid.RowDefinitions>
+            <RowDefinition MinHeight="380"/>
+            <RowDefinition Height="2"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition MinHeight="80"/>
+            <RowDefinition Height="45"/>            
+        </Grid.RowDefinitions>
+        <!--First row-->
+        <Grid Grid.Row="0" Grid.ColumnSpan="2" Margin="5,0,5,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="3"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="3"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="3"/>
+                <ColumnDefinition Width="1*"/>               
+            </Grid.ColumnDefinitions>
+            <!--Column 0 (Filters)(Worksets)-->
+            <!--É aqui que o UserControl FiltersAndWorksetPanel se associa a classe controladora FiltersAndWorksetPanelVM-->
+            <!--This is where the UserControl FiltersAndWorksetPanel is bound to the controller class FiltersAndWorksetPanelVM-->
+            <view:FiltersAndWorksetPanel Grid.Column="0"                                          
+                                         DataContext="{Binding FiltersAndWorksetPanelVM}"/>
+            <!--Coluna 1 Vertical divider-->
+            <Grid Grid.Column="1">
+                <DockPanel>
+                    <Rectangle Width="2" Fill="LightGray"/>
+                </DockPanel>
+            </Grid>
+            <!--Coluna 2 (Categories)-->
+            <!--É aqui que o UserControl CategoriesPanel se associa a classe controladora CategoriesPanelVM-->
+            <!--This is where the UserControl CategoriesPanel is bound to the controller class CategoriesPanelVM-->
+            <view:CategoriesPanel Grid.Column="2" 
+                                  DataContext="{Binding CategoriesPanelVM}"/>
+
+            <!--Coluna 3 Vertical divider-->
+            <Grid Grid.Column="3">
+                <DockPanel>
+                    <Rectangle Width="2" Fill="LightGray"/>
+                </DockPanel>
+            </Grid>
+            <!--Coluna 4 (Patterns and Line)-->
+            <!--É aqui que o UserControl PatternsAndLine se associa a classe controladora PatternsAndLinePanelVM-->
+            <!--This is where the UserControl PatternsAndLine is bound to the controller class PatternsAndLinePanelVM-->
+            <view:PatternsAndLine Grid.Column="4" 
+                                  DataContext="{Binding PatternsAndLinePanelVM}"/>
+            <!--Coluna 5 Vertical divider-->
+            <Grid Grid.Column="5">
+                <DockPanel>
+                    <Rectangle Width="2" Fill="LightGray"/>
+                </DockPanel>
+            </Grid>
+
+            <!--Coluna 6 (Patterns and Line Cut)-->
+            <!--É aqui que o UserControl PatternsAndLineCut se associa a classe controladora PatternsAndLinePanelVM-->
+            <!--This is where the UserControl PatternsAndLineCut is bound to the controller class PatternsAndLineCutPanelVM-->
+            <view:PatternAndLineCut Grid.Column="6"
+                                    DataContext="{Binding PatternAndLineCutPanelVM}"/>
+
+        </Grid>
+        <!--Second row: Horizontal divider-->
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+            <DockPanel HorizontalAlignment="Stretch">
+                <Rectangle Height="2" Fill="LightGray"/>
+            </DockPanel>
+        </Grid>
+        <!--Third row - Buttons for import and Configuration finalization-->
+        <Grid Grid.Row="2" Grid.ColumnSpan="2">
+            <DockPanel HorizontalAlignment="Stretch">
+                <Button Content="IMPORTAR EXCEL" 
+                        FontWeight="Bold" 
+                        Height="30" 
+                        Width="150" 
+                        Background="#FF96D296" 
+                        HorizontalAlignment="Left"
+                        Margin="5"
+                        Command="{Binding ImportExcelCommand}">
+                    <Button.ToolTip>
+                        <StackPanel>
+                            <Label Content="Importa configurações provenientes de uma arquivo Excel."/>
+                        </StackPanel>
+                    </Button.ToolTip>
+                </Button>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <CheckBox Content="Salvar em um arquivo Excel"
+                              FontSize="14"
+                              VerticalAlignment="Center"
+                              IsChecked="{Binding BolCheckExcel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Button Content="..." 
+                            FontWeight="Bold" 
+                            Height="30" 
+                            Width="30"  
+                            HorizontalAlignment="Right" 
+                            Margin="20,0,5,0"
+                            Command="{Binding FindExcelCommand}">
+                        <Button.ToolTip>
+                            <StackPanel>
+                                <Label Content="Informe o arquivo Excel para salvar as configurações."/>
+                            </StackPanel>
+                        </Button.ToolTip>
+                    </Button>
+                    <CheckBox Content="Rever filtros existentes."
+                              FontSize="14"
+                              VerticalAlignment="Center"
+                              IsChecked="{Binding BolCheckReviewFilters, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Button Content="INSERIR NA TABELA" 
+                            FontWeight="Bold" Height="30" 
+                            Width="200"
+                            Background="#FFDDDDDD"
+                            HorizontalAlignment="Right"
+                            Margin="20,0,5,0"
+                            Command="{Binding InsertTableCommand}">
+                        <Button.ToolTip>
+                            <StackPanel>
+                                <Label Content="Insere as configurações na tabela abaixo."/>
+                            </StackPanel>
+                        </Button.ToolTip>
+                    </Button>
+                </StackPanel>
+            </DockPanel>
+        </Grid>
+        <!--Fourth row of the DataGrid-->
+        <Grid Grid.Row="3" Grid.ColumnSpan="2">
+            <DockPanel>
+                <GroupBox x:Name="gruBResult" Header="Resumo:" FontSize="12">
+                    <DataGrid x:Name="dtgConfigFilters"
+                              ItemsSource="{Binding FiltersDataCollection}"
+                              AutoGenerateColumns="False" 
+                              CanUserReorderColumns="False"
+                              CanUserAddRows="False"
+                              RowBackground="AliceBlue"
+                              AlternatingRowBackground="White"
+                              RenderTransformOrigin="0.501,0.283"
+                              HorizontalScrollBarVisibility="Auto"
+                              VerticalScrollBarVisibility="Auto"
+                              VerticalAlignment="Stretch"                              
+                              FontSize="12">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="FILTRO"
+                                                IsReadOnly="True"
+                                                Width="1*"
+                                                Binding="{Binding strNameFiltro}"/>
+                            <DataGridTextColumn Header="WORKSET"
+                                                IsReadOnly="False"
+                                                Width="1*"
+                                                Binding="{Binding strNameWorkset}"
+                                                />
+                            <DataGridTextColumn Header="CATEGORIAS"
+                                                IsReadOnly="False"
+                                                MinWidth="150"
+                                                Width="1.5*"
+                                                Binding="{Binding strLstCategories}"/>
+                            <DataGridTextColumn Header = "COLOR PATTERN"
+                                                IsReadOnly="False"
+                                                Width="1.15*"
+                                                Binding="{Binding strColorPattern}"/>
+                            <DataGridTextColumn Header="PATTERN TYPE"
+                                                IsReadOnly="False"
+                                                Width="1.25*"
+                                                Binding="{Binding strPatternType}"/>
+                            <DataGridTextColumn Header="COLOR LINE"
+                                                IsReadOnly="False"                                                             
+                                                Width="1.15*"
+                                                Binding="{Binding strColorLine}"/>
+                            <DataGridTextColumn Header="LINE STYLE"
+                                                IsReadOnly="True"
+                                                Width="1.25*"
+                                                Binding="{Binding strLineStyle}"/>
+                            <DataGridTextColumn Header="N° w"
+                                                IsReadOnly="False"  
+                                                Width="0.3*"
+                                                Binding="{Binding strLineWeight}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </GroupBox>
+            </DockPanel>
+        </Grid>
+        <!--Fifth row, Buttons for closing the application-->
+        <Grid Grid.Row="4" Margin ="5" Grid.ColumnSpan="2">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Image Height="30" Width="150" Source="pack://application:,,,/ViewTemplateConfigFilterNet8;component/Resources/PQRMA2-LOGO.png" Stretch="Uniform"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="APLICAR" 
+                        FontWeight="Bold" 
+                        Height="30" 
+                        Width="100" 
+                        HorizontalAlignment="Right"
+                        Background="#FFD0E295"
+                        Command="{Binding ApplyChangesCommand}">
+                    <Button.ToolTip>
+                        <StackPanel>
+                            <Label Content="Finaliza conforme informações na tabela."/>
+                        </StackPanel>
+                    </Button.ToolTip>
+                </Button>
+                <Button Content="CANCELAR" 
+                        FontWeight="Bold" 
+                        Height="30" 
+                        Width="100" 
+                        HorizontalAlignment="Right"
+                        Background="#FFFF7F7F"
+                        Margin="20,0,0,0"
+                        Command="{Binding CancelCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}">
+                    <Button.ToolTip>
+                        <StackPanel>
+                            <Label Content="Encerra a aplicação sem salvar alterações."/>
+                        </StackPanel>
+                    </Button.ToolTip>
+                </Button>
+                
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

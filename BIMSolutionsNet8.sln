@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36603.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewTemplateConfigFilterNet8", "ViewTemplateConfigFilterNet8\ViewTemplateConfigFilterNet8.csproj", "{443D0BEB-6C3D-4340-BBA8-79C87094E705}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SharedProject", "..\..\LibrariesProtec\LibraryProtecRevit2025\SharedProject\SharedProject.shproj", "{7C4E771B-A7BB-4853-80E7-F0486F508560}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{443D0BEB-6C3D-4340-BBA8-79C87094E705}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{443D0BEB-6C3D-4340-BBA8-79C87094E705}.Debug|Any CPU.Build.0 = Debug|x64
+		{443D0BEB-6C3D-4340-BBA8-79C87094E705}.Debug|x64.ActiveCfg = Debug|x64
+		{443D0BEB-6C3D-4340-BBA8-79C87094E705}.Debug|x64.Build.0 = Debug|x64
+		{443D0BEB-6C3D-4340-BBA8-79C87094E705}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{443D0BEB-6C3D-4340-BBA8-79C87094E705}.Release|Any CPU.Build.0 = Release|Any CPU
+		{443D0BEB-6C3D-4340-BBA8-79C87094E705}.Release|x64.ActiveCfg = Release|x64
+		{443D0BEB-6C3D-4340-BBA8-79C87094E705}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AA9022F4-FFDE-483C-9974-EDDE21AA5941}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\..\LibrariesProtec\LibraryProtecRevit2025\SharedProject\SharedProject.projitems*{443d0beb-6c3d-4340-bba8-79c87094e705}*SharedItemsImports = 5
+		..\..\LibrariesProtec\LibraryProtecRevit2025\SharedProject\SharedProject.projitems*{7c4e771b-a7bb-4853-80e7-f0486f508560}*SharedItemsImports = 13
+	EndGlobalSection
+EndGlobal

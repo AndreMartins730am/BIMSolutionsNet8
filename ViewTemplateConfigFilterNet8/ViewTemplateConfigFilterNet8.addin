@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+  <AddIn Type="Command">
+    <Name>Vitconfil</Name>
+    <FullClassName>ViewTemplateConfigFilterNet8.Commands.Vitconfil</FullClassName>
+    <Text>Vitconfil</Text>
+    <VisibilityMode>AlwaysVisible</VisibilityMode>
+    <Assembly>
+      BIMSolutionsNet8\ViewTemplateConfigFilterNet8.dll
+    </Assembly>
+    <ClientId>358d6f09-e548-4edc-8196-5616d921111f</ClientId>
+    <Description>Auxilia a inserir Filtros em View Templates</Description>
+    <VendorId>André Martins.PQRMA2</VendorId>
+    <VendorDescription>PQRMA2, andre.martins@pqrma2.com</VendorDescription>
+  </AddIn>
+</RevitAddIns>
