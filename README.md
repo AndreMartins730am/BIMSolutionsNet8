@@ -1,0 +1,1 @@
+This plugin is developed for Revit versions starting from 2025. Its purpose is to create filters and worksets, as well as configure View Templates according to the PQRMA2 company standard, where filters are associated with worksets to control the visualization and colors of each system.
